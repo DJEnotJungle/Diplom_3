@@ -1,11 +1,11 @@
-package ru.yandex.practicum.stella.jsonclass;
+package ru.yandex.practicum.stella.dto;
 
-public class UserLoginJson {
+public class UserLoginDTO {
 
     private String email;
     private String password;
 
-    public UserLoginJson(String email, String password) {
+    public UserLoginDTO(String email, String password) {
         this.email = email;
         this.password = password;
     }

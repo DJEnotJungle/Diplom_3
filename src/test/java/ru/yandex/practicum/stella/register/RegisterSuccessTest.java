@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import ru.yandex.practicum.stella.BeforeTest;
 import ru.yandex.practicum.stella.api.UserSteps;
-import ru.yandex.practicum.stella.jsonclass.UserLoginJson;
+import ru.yandex.practicum.stella.dto.UserLoginDTO;
 import ru.yandex.practicum.stella.pages.MainPage;
 import ru.yandex.practicum.stella.pages.PersonalAreaPage;
 import ru.yandex.practicum.stella.pages.RegisterPage;
@@ -21,7 +21,7 @@ import static org.hamcrest.CoreMatchers.is;
 public class RegisterSuccessTest extends BeforeTest {
 
     private String token;
-    UserSteps userSteps = new UserSteps();
+    private UserSteps userSteps = new UserSteps();
     private final String name;
     private final String email;
     private final String password;
@@ -46,7 +46,7 @@ public class RegisterSuccessTest extends BeforeTest {
         MainPage mainPage = new MainPage(driver);
         PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
         RegisterPage registerPage = new RegisterPage(driver);
-        UserLoginJson userLogin = new UserLoginJson(email, password);
+        UserLoginDTO userLogin = new UserLoginDTO(email, password);
         mainPage.singInPress();
         personalAreaPage.registerPress();
         registerPage.sendTheRegistrationForm(name, email, password);
@@ -62,7 +62,7 @@ public class RegisterSuccessTest extends BeforeTest {
         MainPage mainPage = new MainPage(driver);
         PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
         RegisterPage registerPage = new RegisterPage(driver);
-        UserLoginJson userLogin = new UserLoginJson(email, password);
+        UserLoginDTO userLogin = new UserLoginDTO(email, password);
         mainPage.personalAreaPress();
         personalAreaPage.registerPress();
         registerPage.sendTheRegistrationForm(name, email, password);

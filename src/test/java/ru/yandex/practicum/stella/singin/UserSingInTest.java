@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import ru.yandex.practicum.stella.BeforeTest;
 import ru.yandex.practicum.stella.api.UserSteps;
-import ru.yandex.practicum.stella.jsonclass.UserCreateJson;
+import ru.yandex.practicum.stella.dto.UserCreateDTO;
 import ru.yandex.practicum.stella.pages.MainPage;
 import ru.yandex.practicum.stella.pages.PersonalAreaPage;
 import ru.yandex.practicum.stella.pages.RegisterPage;
@@ -21,7 +21,7 @@ import static org.hamcrest.CoreMatchers.is;
 public class UserSingInTest extends BeforeTest {
 
     private String token;
-    UserSteps userSteps = new UserSteps();
+    private UserSteps userSteps = new UserSteps();
     private final String name;
     private final String email;
     private final String password;
@@ -45,7 +45,7 @@ public class UserSingInTest extends BeforeTest {
     public void loginOnSignInButtonTest(){
         MainPage mainPage = new MainPage(driver);
         PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
-        UserCreateJson userCreate = new UserCreateJson(email, password, name);
+        UserCreateDTO userCreate = new UserCreateDTO(email, password, name);
         ValidatableResponse responseCreate = userSteps.userCreate(userCreate);
         token=responseCreate.extract().path("accessToken");
         mainPage.singInPress();
@@ -61,7 +61,7 @@ public class UserSingInTest extends BeforeTest {
     public void loginOnPersonalArealTest(){
         MainPage mainPage = new MainPage(driver);
         PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
-        UserCreateJson userCreate = new UserCreateJson(email, password, name);
+        UserCreateDTO userCreate = new UserCreateDTO(email, password, name);
         ValidatableResponse responseCreate = userSteps.userCreate(userCreate);
         token=responseCreate.extract().path("accessToken");
         mainPage.personalAreaPress();
@@ -78,7 +78,7 @@ public class UserSingInTest extends BeforeTest {
         MainPage mainPage = new MainPage(driver);
         RegisterPage registerPage = new RegisterPage(driver);
         PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
-        UserCreateJson userCreate = new UserCreateJson(email, password, name);
+        UserCreateDTO userCreate = new UserCreateDTO(email, password, name);
         ValidatableResponse responseCreate = userSteps.userCreate(userCreate);
         token=responseCreate.extract().path("accessToken");
         mainPage.personalAreaPress();
@@ -97,7 +97,7 @@ public class UserSingInTest extends BeforeTest {
         MainPage mainPage = new MainPage(driver);
         RegisterPage registerPage = new RegisterPage(driver);
         PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
-        UserCreateJson userCreate = new UserCreateJson(email, password, name);
+        UserCreateDTO userCreate = new UserCreateDTO(email, password, name);
         ValidatableResponse responseCreate = userSteps.userCreate(userCreate);
         token=responseCreate.extract().path("accessToken");
         mainPage.personalAreaPress();

@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import ru.yandex.practicum.stella.BeforeTest;
 import ru.yandex.practicum.stella.api.UserSteps;
-import ru.yandex.practicum.stella.jsonclass.UserCreateJson;
+import ru.yandex.practicum.stella.dto.UserCreateDTO;
 import ru.yandex.practicum.stella.pages.MainPage;
 import ru.yandex.practicum.stella.pages.PersonalAreaPage;
 import static org.hamcrest.CoreMatchers.is;
@@ -19,7 +19,7 @@ import static org.hamcrest.CoreMatchers.is;
 @DisplayName("Тесты перехода в конструктор из личного кабинета")
 public class ConstructorTest extends BeforeTest {
     private String token;
-    UserSteps userSteps = new UserSteps();
+    private UserSteps userSteps = new UserSteps();
     private final String name;
     private final String email;
     private final String password;
@@ -43,7 +43,7 @@ public class ConstructorTest extends BeforeTest {
     public void constructorButtonTest(){
         MainPage mainPage = new MainPage(driver);
         PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
-        UserCreateJson userCreate = new UserCreateJson(email, password, name);
+        UserCreateDTO userCreate = new UserCreateDTO(email, password, name);
         ValidatableResponse responseCreate = userSteps.userCreate(userCreate);
         token=responseCreate.extract().path("accessToken");
         mainPage.singInPress();
@@ -60,7 +60,7 @@ public class ConstructorTest extends BeforeTest {
     public void constructorLogoTest(){
         MainPage mainPage = new MainPage(driver);
         PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
-        UserCreateJson userCreate = new UserCreateJson(email, password, name);
+        UserCreateDTO userCreate = new UserCreateDTO(email, password, name);
         ValidatableResponse responseCreate = userSteps.userCreate(userCreate);
         token=responseCreate.extract().path("accessToken");
         mainPage.singInPress();

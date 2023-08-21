@@ -3,21 +3,21 @@ package ru.yandex.practicum.stella.api;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
-import ru.yandex.practicum.stella.jsonclass.UserCreateJson;
-import ru.yandex.practicum.stella.jsonclass.UserLoginJson;
+import ru.yandex.practicum.stella.dto.UserCreateDTO;
+import ru.yandex.practicum.stella.dto.UserLoginDTO;
 import static io.restassured.RestAssured.given;
 import static ru.yandex.practicum.stella.Constants.*;
 
 public class UserSteps {
 
     @Step("Создание уникального пользователя")
-    public ValidatableResponse userCreate(UserCreateJson userCreateJson){
+    public ValidatableResponse userCreate(UserCreateDTO userCreateDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userCreateJson)
+                .body(userCreateDTO)
                 .when()
                 .post(CREATE_USER_PATH)
                 .then();
@@ -36,13 +36,13 @@ public class UserSteps {
     }
 
     @Step("Авторизация пользователя")
-    public ValidatableResponse userLogin(UserLoginJson userLoginJson){
+    public ValidatableResponse userLogin(UserLoginDTO userLoginDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userLoginJson)
+                .body(userLoginDTO)
                 .when()
                 .post(LOG_USER_PATH)
                 .then();

@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import ru.yandex.practicum.stella.BeforeTest;
 import ru.yandex.practicum.stella.api.UserSteps;
-import ru.yandex.practicum.stella.jsonclass.UserCreateJson;
+import ru.yandex.practicum.stella.dto.UserCreateDTO;
 import ru.yandex.practicum.stella.pages.MainPage;
 import ru.yandex.practicum.stella.pages.PersonalAreaPage;
 import static org.hamcrest.CoreMatchers.is;
@@ -20,7 +20,7 @@ import static org.hamcrest.CoreMatchers.is;
 public class ExitTest extends BeforeTest {
 
     private String token;
-    UserSteps userSteps = new UserSteps();
+    private UserSteps userSteps = new UserSteps();
     private final String name;
     private final String email;
     private final String password;
@@ -31,7 +31,7 @@ public class ExitTest extends BeforeTest {
         this.password = password;
     }
 
-    @Parameterized.Parameters(name = "{0} {1}")
+    @Parameterized.Parameters(name = "{0} {1} {2}")
     public static Object[][] getText(){
         return new Object[][]{
                 {"dsads", "saddsfdgf@gmail.com", "gelooleg"},
@@ -44,7 +44,7 @@ public class ExitTest extends BeforeTest {
     public void userExitTest(){
         MainPage mainPage = new MainPage(driver);
         PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
-        UserCreateJson userCreate = new UserCreateJson(email, password, name);
+        UserCreateDTO userCreate = new UserCreateDTO(email, password, name);
         ValidatableResponse responseCreate = userSteps.userCreate(userCreate);
         token=responseCreate.extract().path("accessToken");
         mainPage.singInPress();
